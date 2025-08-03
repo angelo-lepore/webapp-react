@@ -19,8 +19,8 @@ export default function SingleMovie() {
       .then((data) => {
         setMovie(data);
         console.log("Film:", data);
-        setReviews(data.reviews || []);
-        console.log("Recensioni:", data.reviews || []);
+        setReviews(data.reviews);
+        console.log("Recensioni:", data.reviews);
       });
   }, [id]);
 
@@ -67,15 +67,15 @@ export default function SingleMovie() {
           {/* Sezione recensioni */}
           <section className="mt-5">
             <h3>Recensioni</h3>
-            {reviews.length === 0 ? (
+            {reviews?.length === 0 ? (
               <p>Ancora nessuna recensione per questo film.</p>
             ) : (
-              reviews.map(({ id, movie_id, name, text, vote }) => (
-                <div key={id} className="border rounded p-3 mb-3">
+              reviews.map((review) => (
+                <div key={review.id} className="border rounded p-3 mb-3">
                   <p>
-                    <strong>{name}</strong> - Rating: {vote}/5
+                    <strong>{review.name}</strong> - Vote: {review.vote}/5
                   </p>
-                  <p>{text}</p>
+                  <p>{review.text}</p>
                 </div>
               ))
             )}
