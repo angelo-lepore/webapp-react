@@ -1,10 +1,10 @@
 // Import degli hook di React
 import { useState, useEffect } from "react";
 
-// Import di ProductCard
+// Import di MovieCard
 import MovieCard from "./MovieCard";
 
-// Componente che mostra la lista di tutti i prodotti
+// Componente che mostra la lista dei film
 export default function MovieList() {
   const urlMovies = "http://localhost:3020/movies";
   const [movies, setMovies] = useState([]);
