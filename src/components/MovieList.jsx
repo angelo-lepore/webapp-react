@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Import degli hook di React
 import { useState, useEffect } from "react";
 
@@ -8,15 +9,17 @@ import MovieCard from "./MovieCard";
 export default function MovieList() {
   const urlMovies = "http://localhost:3020/movies";
   const [movies, setMovies] = useState([]);
+=======
+// Import di MovieCard
+import MovieCard from "./MovieCard";
 
-  useEffect(() => {
-    fetch(urlMovies)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Movies:", data);
-        setMovies(data);
-      });
-  }, []);
+// Importi dell'hook per accedere ai film dal context
+import { useMovieProvider } from "../contexts/MovieContext";
+>>>>>>> 49ee702 (Added movie provider and integrate context into MovieList and App components)
+
+// Componente che mostra la lista di tutti i film
+export default function MovieList() {
+  const { movies } = useMovieProvider();
 
   return (
     <>

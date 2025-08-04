@@ -14,22 +14,27 @@ import SingleMovie from "./pages/SingleMovie.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 
+// Import del provider dei film
+import { MovieProvider } from "./contexts/MovieContext.jsx";
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          {/* Layout di default che racchiude le varie pagine */}
-          <Route element={<DefaultLayout />}>
-            {/* Rotte principali */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/movies" element={<MoviesPage />} />
-            <Route path="/movies/:id" element={<SingleMovie />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <MovieProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Layout di default che racchiude le varie pagine */}
+            <Route element={<DefaultLayout />}>
+              {/* Rotte principali */}
+              <Route path="/" element={<HomePage />} />
+              <Route path="/movies" element={<MoviesPage />} />
+              <Route path="/movies/:id" element={<SingleMovie />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </MovieProvider>
     </>
   );
 }
