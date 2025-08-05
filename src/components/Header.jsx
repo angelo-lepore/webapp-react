@@ -67,7 +67,7 @@ export default function Header() {
             <div className="input-group">
               <input
                 type="text"
-                className="form-control input-focus-cineverse"
+                className="form-control"
                 placeholder="Search movie..."
               />
               <button className="btn btn-outline-light" type="button">

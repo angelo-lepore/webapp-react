@@ -1,5 +1,8 @@
+// Import ReviewForm
+import ReviewForm from "./ReviewForm";
+
 // Componente che mostra una singola "card" movie
-export default function ReviewsCard({ reviews }) {
+export default function ReviewsCard({ reviews, onAddReview, movieId }) {
   return (
     <>
       <div className="mt-5">
@@ -8,7 +11,7 @@ export default function ReviewsCard({ reviews }) {
           <p>Ancora nessuna recensione per questo film.</p>
         ) : (
           reviews.map((review) => (
-            <div key={review?.id} className="border rounded p-3 mb-3">
+            <div key={review.id} className="border rounded p-3 mb-3">
               <p>
                 <strong>{review?.name}</strong> - Vote: {review?.vote}/5
               </p>
@@ -16,6 +19,7 @@ export default function ReviewsCard({ reviews }) {
             </div>
           ))
         )}
+        <ReviewForm movieId={movieId} onSubmit={onAddReview} />
       </div>
     </>
   );

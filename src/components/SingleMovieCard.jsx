@@ -35,7 +35,7 @@ export default function SingleMovieCard({ movie }) {
 
             <div className="d-flex justify-content-end mt-auto">
               <Link to="/movies" className="btn btn-outline-dark btn-lg">
-                <i className="bi bi-arrow-left me-2"></i> Torna ai film
+                <i className="bi bi-arrow-left me-2"></i> Back to movies
               </Link>
             </div>
           </div>
