@@ -4,18 +4,24 @@ import { useState, useEffect } from "react";
 // Import gli hook del router
 import { useParams } from "react-router-dom";
 
+// Import degli hook del loader
+import { useLoaderContext } from "../contexts/LoaderContext";
+
 // Import di SingleMovieCard e ReviewsCard
 import SingleMovieCard from "../components/SingleMovieCard";
 import ReviewsCard from "../components/ReviewsCard";
+import Loader from "../components/Loader";
 
-export default function SingleMovie() {
+export default function SingleMoviePage() {
   const { id } = useParams();
   const urlMovies = `http://localhost:3020/movies/${id}`;
   const [movie, setMovie] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const { setLoading } = useLoaderContext();
 
   // facciamo la richiesta per ottenere i dati del film
   useEffect(() => {
+    setLoading(true);
     fetch(urlMovies)
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +30,12 @@ export default function SingleMovie() {
         setReviews(data.reviews);
         console.log("Recensioni:", data.reviews);
       })
-      .catch((err) => console.error("Errore nel caricamento del film:", err));
+      .catch((error) => {
+        console.error("Errore nella fetch dei film:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   // funzione per aggiungere una nuova recensione allo stato
@@ -38,12 +49,13 @@ export default function SingleMovie() {
       <main>
         <div className="container py-5">
           <p>Caricamento film...</p>
+          <Loader />
         </div>
       </main>
     );
   }
 
-  // se il film è stato caricato, mostriamo la card del film e le recensioni
+  // mostriamo la card del film e le recensioni
   return (
     <>
       <main>
@@ -52,7 +64,7 @@ export default function SingleMovie() {
           <ReviewsCard
             reviews={reviews}
             onAddReview={onAddReview}
-            movieId={movie?.id}
+            movieId={movie.id}
           />
         </div>
       </main>

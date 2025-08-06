@@ -1,7 +1,13 @@
 // Import di MovieList
 import MovieList from "../components/MovieList";
+import Loader from "../components/Loader";
+
+// Import degli hook del loader
+import { useLoaderContext } from "../contexts/LoaderContext";
 
 export default function MoviesPage() {
+  const { loading } = useLoaderContext();
+
   return (
     <>
       <main>
@@ -9,7 +15,7 @@ export default function MoviesPage() {
           <h1 className="display-4 text-center mb-5">
             I Nostri Film Recensiti
           </h1>
-          <MovieList />
+          {loading ? <Loader /> : <MovieList />}
         </div>
       </main>
     </>

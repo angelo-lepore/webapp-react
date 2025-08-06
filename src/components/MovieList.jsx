@@ -2,12 +2,12 @@
 import MovieCard from "../components/MovieCard";
 
 // Importi dell'hook per accedere ai film dal context
-import { useMovieProvider } from "../contexts/MovieContext";
+import { useMovieContext } from "../contexts/MovieContext";
 
 // Componente che mostra la lista di tutti i film
 export default function MovieList() {
   // Usiamo il nostro custom hook per ottenere i film dal context
-  const { movies } = useMovieProvider();
+  const { movies } = useMovieContext();
 
   return (
     <>
